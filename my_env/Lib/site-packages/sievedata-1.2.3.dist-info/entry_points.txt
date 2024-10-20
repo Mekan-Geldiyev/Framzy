@@ -1,0 +1,2 @@
+[console_scripts]
+sieve = sieve._cli.sieve:start_cli
