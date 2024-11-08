@@ -12,3 +12,4 @@ staticfiles/
 venv/
 env/
 .env
+my_env/
