@@ -1,10 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel="canonical" href="{{ request.build_absolute_uri }}">
+        <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://framzy.cc/",
+        "name": "Framzy",
+        "description": "Framzy is a platform to create short, engaging videos.",
+        "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://framzy.cc/search?query={search_term_string}",
+        "query-input": "required name=search_term_string"
+        }
+        }
+        </script>
+        <meta name="keywords" content="short videos, video creation, captions, Framzy, video tools">
+
+        <meta property="og:title" content="Framzy - Create Short Videos Quickly">
+        <meta property="og:description" content="Turn ideas into engaging videos for social media.">
+        <meta property="og:url" content="{{ request.build_absolute_uri }}">
+        <meta property="og:type" content="website">
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0N5SJ2XJND"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-0N5SJ2XJND');
+        </script>
+
         {% load static %}
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Vividio{% endblock %}</title>
+        <title>{% block title %}Framzy - Create Short Videos Effortlessly{% endblock %}</title>
         <link href="{% static 'css/styles.css' %}" rel="stylesheet">
         <!-- Bootstrap CSS -->  
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -13,7 +45,7 @@
             font-family: 'YourCustomFont';
             src: url('{% static "fonts/Quesha-gndR.ttf" %}') format('truetype');
             }
-            
+           
             body {
                 font-size: 30px;
                 font-family: 'YourCustomFont', Arial, sans-serif; /* Use your custom font */
@@ -43,6 +75,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        {% if user.is_authenticated %}
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -65,14 +98,14 @@
                 </li>
             </ul>
         </div>
-
+        {% endif %}
         {% if user.is_authenticated %}
             <h3><a href="{% url 'my_videos' %}">My Videos</a></h3>
             <h3><a href="{% url 'logout' %}">Logout</a></h3>
         {% else %}
             <h3><a href="{% url 'login' %}">Login</a></h3>
         {% endif %}
-        
+       
     </nav>
 
 

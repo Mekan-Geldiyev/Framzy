@@ -1,14 +1,94 @@
 {% extends "base.html" %}
-{% load static %}
-
-{% block title %} Register for Framzy {% endblock %}
 
 {% block content %}
 
-<h2>Register</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-</form>
-{% endblock content %}
+<style>
+.register-container button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+</style>
+<head>
+    <meta name="description" content="Register for a Framzy account! Start using this free AI tool to clip videos and automate your faceless channel!">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0N5SJ2XJND"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-0N5SJ2XJND');
+    </script>
+</head>
+
+<div class="register-container">
+    <h2>Register</h2>
+    <form method="POST" id="register-form">
+        {% csrf_token %}
+       
+        {{ form.email.label_tag }}<br>
+        {{ form.email }}<br>
+
+        {{ form.password1.label_tag }}<br>
+        {{ form.password1 }}<br>
+        <ul id="password-requirements" style="display: none; color: red;">
+            <li id="length">At least 8 characters</li>
+            <li id="number">Must contain a number</li>
+            <li id="special">Must contain a special character</li>
+        </ul>
+
+        {{ form.password2.label_tag }}<br>
+        {{ form.password2 }}<br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li style="color: red;">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+<script>
+    const passwordInput = document.querySelector('#id_password1');
+    const passwordRequirements = document.getElementById('password-requirements');
+
+    passwordInput.addEventListener('input', function () {
+        const value = passwordInput.value;
+        const lengthRequirement = document.getElementById('length');
+        const numberRequirement = document.getElementById('number');
+        const specialRequirement = document.getElementById('special');
+
+        passwordRequirements.style.display = 'block';
+
+        // Check for at least 8 characters
+        if (value.length >= 8) {
+            lengthRequirement.style.color = 'green';
+        } else {
+            lengthRequirement.style.color = 'red';
+        }
+
+        // Check for at least one number
+        if (/\d/.test(value)) {
+            numberRequirement.style.color = 'green';
+        } else {
+            numberRequirement.style.color = 'red';
+        }
+
+        // Check for at least one special character
+        if (/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+            specialRequirement.style.color = 'green';
+        } else {
+            specialRequirement.style.color = 'red';
+        }
+    });
+</script>
+{% endblock %}

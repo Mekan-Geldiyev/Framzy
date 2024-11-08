@@ -9,7 +9,7 @@ import threading
 from django.http import HttpResponse, HttpResponseServerError
 import io
 from .models import BackgroundVideo
-from .forms import SplitVideoForm, OneVidForm, OneVidCustomForm, ClipAnythingForm
+from .forms import SplitVideoForm, OneVidForm, OneVidCustomForm, ClipAnythingForm, CustomUserCreationForm  
 import assemblyai as aai
 from .models import FontsChoose, BackgroundVideo, VoiceChoose, ProcessedVideo
 import requests
@@ -45,15 +45,20 @@ def custom_logout(request):
 
 
 #AUTHENTICATION
+
+
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)  # Log the user in after registration
-            return redirect('login')  # Redirect to homepage or profile page
+            messages.success(request, "Registration successful!")
+            return redirect('home')  # Redirect to home or profile page
+        else:
+            messages.error(request, "Please correct the errors below.")
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
 
 
@@ -74,7 +79,8 @@ def my_videos(request):
 
 
 #VIDEO CREATION
-imagemagick_path = "C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\magick.exe"
+imagemagick_path = 'C:\\usr\\bin\\convert' 
+#imagemagick_path = "C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\magick.exe"
 #change_settings({"IMAGEMAGICK_BINARY": imagemagick_path})
 #no clue man
 

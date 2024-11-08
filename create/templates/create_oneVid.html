@@ -63,7 +63,18 @@
     }
 
 </style>
+<head>
+<meta name="description" content="Quickly turn any video into a shareable short clip with Framzy. Add captions, choose styles, and prepare your content for social media in minutes.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0N5SJ2XJND"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-0N5SJ2XJND');
+</script>
+</head>
 <div class="format-container">
     <div class="video-sample">
         <h2>Sample Video</h2>
@@ -82,7 +93,7 @@
         </p>
         <form id="OneVidForm" method="POST" enctype="multipart/form-data" class="bg-light p-4 rounded">
             {% csrf_token %}
-            
+           
             <div class="form-group">
                 <label for="background_video">Choose Background Video: </label>
                 <button type="button" id="backgroundVideoButton" class="btn btn-primary">Select Background Video</button>
@@ -134,7 +145,7 @@
                     {% endfor %}
                 </div>
             </div>
-            
+           
             <button type="submit" class="btn btn-primary btn-block">Create Reel</button>
         </form>
 

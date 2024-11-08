@@ -73,12 +73,25 @@
     {% endfor %}
 
 </style>
+<head>
+<meta name="description" content="Framzy helps you turn your long videos into shorter, auto-captioned, engaging clips! This format specifically works with our AI to clip videos FOR YOU!">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0N5SJ2XJND"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0N5SJ2XJND');
+</script>
+
+</head>
 
 <div class="format-container">
     <div class="video-sample">
         <h2>Sample Video</h2>
         <video controls>
-            <source src="{% static 'examples/onevid_sample.MOV' %}" type="video/mp4">
+            <source src="{% static 'examples/clipAnythingExample.mp4' %}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
@@ -90,7 +103,7 @@
         </p>
         <form id="ClipAnythingForm" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            
+           
             <div class="form-group">
                 <label>Input Video: </label>
                 {{ form.video_to_analyze }}
@@ -104,7 +117,7 @@
                     {% endfor %}
                 </select>
             </div>
-            
+           
 
             <div class="form-group">
                 <label for="id_script">Highlights</label>
@@ -117,16 +130,6 @@
         <div id="processingMessage" class="alert alert-info mt-4" style="display:none;">
             Your video is being processed please wait about 15-30 minutes.
         </div>
-    </div>
-
-    <div class="tutorial">
-        <h2>Tutorial</h2>
-        <video controls>
-            <source src="{% static 'examples/onevid_tutorial.mp4' %}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <!-- If you want to use an image instead of a video, uncomment the next line -->
-        <!-- <img src="{% static 'examples/tutorial.png' %}" alt="Tutorial Image"> -->
     </div>
 </div>
 
@@ -171,7 +174,7 @@
 
 
 <script>
-document.getElementById('OneVidForm').addEventListener('submit', function() {
+document.getElementById('ClipAnythingForm').addEventListener('submit', function() {
     document.getElementById('processingMessage').style.display = 'block';
 });
 </script>

@@ -68,12 +68,25 @@
     }
 </style>
 
+<head>
+    <meta name="description" content="Login to Framzy to get back to clipping videos! AI Content clipping is the new wave!">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0N5SJ2XJND"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-0N5SJ2XJND');
+    </script>
+</head>
+
 <div class="login-container">
     <div class="form-section">
         <h2>Login</h2>
         <form method="POST">
             {% csrf_token %}
-            <label for="username">Username</label>
+            <label for="username">Email</label>
             <input type="text" id="username" name="username" required>
             <br>
             <label for="password">Password</label>
