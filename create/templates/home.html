@@ -186,15 +186,19 @@
     <!-- First Section: "The faster way to create short videos." -->
     <header>
         <h1>Hello {{ userName }}</h1>
-        <h1 class="section-title">The faster way to Generate Short Videos.</h1>
+        <h2 class="section-title">The faster way to Generate Short Videos.</h2>
         <p class="section-subtitle" style="font-size: 38px; font-family: 'YourCustomFont', Arial, sans-serif;">Create unlimited short videos. Auto generate a background, captions, and a voice.</p>
-        <a href="{% url 'create_motivation' %}" class="try-now-btn" style="font-size: 30px;">Try Now &#x2192;</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'clip_anything' %}" class="try-now-btn" style="font-size: 30px;">Try Now &#x2192;</a>
+        {% else %}
+        <a href="{% url 'login' %}" class="try-now-btn" style="font-size: 30px;">Try Now &#x2192;</a>
+        {% endif %}
     </header>
 
     <main>
         <!-- Second Section: "From idea to short in only minutes." -->
         <section class="section-container">
-            <h1 class="section-title">From idea to short in only minutes.</h1>
+            <h2 class="section-title">From idea to short in only minutes.</h2>
             <p class="section-subtitle" style="font-size: 38px; font-family: 'YourCustomFont', Arial, sans-serif;">Give the outline for your ideas, then wait as Framzy does the rest.</p>
             <!-- Video containers for this section -->
             <div class="features">
